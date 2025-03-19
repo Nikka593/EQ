@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EQ（感情知能）の理解と活用 サムネイル</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@700&family=Zen+Kurenaido&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* リセットとベーススタイル */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: #F2F2F2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    
+    /* カラーパレット定義 */
+    :root {
+      --color-primary: #21403A;
+      --color-secondary: #F2F2F2;
+      --color-tertiary: #D9D9D9;
+      --color-dark: #404040;
+      --color-darkest: #0D0D0D;
+    }
+    
+    /* フォントスタイル */
+    .kaisei-decol-bold {
+      font-family: "Kaisei Decol", serif;
+      font-weight: 700;
+      font-style: normal;
+    }
+    
+    .zen-kurenaido-regular {
+      font-family: "Zen Kurenaido", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    
+    /* サムネイルコンテナ */
+    .thumbnail-container {
+      width: 1920px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--color-primary) 0%, #1a2a28 100%);
+    }
+    
+    /* グリッドパターン背景 */
+    .grid-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.5;
+    }
+    
+    /* 円形のグラフィック要素 */
+    .circle-graphic {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+    
+    .circle-1 {
+      width: 600px;
+      height: 600px;
+      top: -200px;
+      right: -100px;
+      background: radial-gradient(circle, var(--color-tertiary) 0%, transparent 70%);
+    }
+    
+    .circle-2 {
+      width: 400px;
+      height: 400px;
+      bottom: -100px;
+      left: -100px;
+      background: radial-gradient(circle, var(--color-tertiary) 0%, transparent 70%);
+    }
+    
+    /* コンテンツコンテナ */
+    .content-container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      height: 100%;
+      padding: 60px;
+    }
+    
+    /* 左側のコンテンツ */
+    .left-content {
+      flex: 0 0 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-right: 40px;
+    }
+    
+    /* 右側のグラフィック */
+    .right-graphic {
+      flex: 0 0 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    /* バッジ */
+    .badge {
+      display: inline-block;
+      background-color: rgba(242, 242, 242, 0.1);
+      color: var(--color-secondary);
+      padding: 8px 16px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      border: 1px solid rgba(242, 242, 242, 0.2);
+      backdrop-filter: blur(5px);
+    }
+    
+    .badge i {
+      margin-right: 8px;
+    }
+    
+    /* タイトル */
+    .title {
+      color: var(--color-secondary);
+      font-size: 5rem;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    .title span {
+      color: #8FE3CF;
+    }
+    
+    /* サブタイトル */
+    .subtitle {
+      color: var(--color-tertiary);
+      font-size: 2rem;
+      margin-bottom: 40px;
+      line-height: 1.4;
+    }
+    
+    /* 特徴ポイント */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 20px;
+      max-width: 900px;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      color: var(--color-secondary);
+      padding: 20px;
+      background-color: rgba(242, 242, 242, 0.05);
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+    }
+    
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-right: 16px;
+      color: #8FE3CF;
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(143, 227, 207, 0.1);
+      border-radius: 50%;
+    }
+    
+    .feature-text {
+      flex-grow: 1;
+    }
+    
+    .feature-title {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: var(--color-secondary);
+    }
+    
+    .feature-desc {
+      font-size: 1.1rem;
+      color: var(--color-tertiary);
+      line-height: 1.5;
+    }
+    
+    /* 右側のEQグラフィック */
+    .eq-graphic {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .eq-brain {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      background-color: rgba(242, 242, 242, 0.05);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    
+    .eq-brain::before {
+      content: "";
+      position: absolute;
+      width: 96%;
+      height: 96%;
+      border-radius: 50%;
+      border: 2px dashed rgba(242, 242, 242, 0.2);
+      animation: rotate 60s linear infinite;
+    }
+    
+    .brain-half {
+      position: absolute;
+      width: 180px;
+      height: 320px;
+      border-radius: 180px 0 0 180px;
+      top: 50%;
+      transform: translateY(-50%);
+      overflow: hidden;
+    }
+    
+    .brain-left {
+      left: 20%;
+      background: linear-gradient(90deg, rgba(64, 224, 208, 0.15), rgba(30, 144, 255, 0.15));
+      border-right: 2px solid rgba(242, 242, 242, 0.3);
+    }
+    
+    .brain-right {
+      right: 20%;
+      background: linear-gradient(90deg, rgba(255, 105, 180, 0.15), rgba(255, 69, 0, 0.15));
+      transform: translateY(-50%) scaleX(-1);
+      border-right: 2px solid rgba(242, 242, 242, 0.3);
+    }
+    
+    .brain-connector {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 180px;
+      background-color: rgba(242, 242, 242, 0.1);
+      border-radius: 40px;
+    }
+    
+    .eq-component {
+      position: absolute;
+      background-color: var(--color-secondary);
+      color: var(--color-primary);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: pulse 3s infinite alternate;
+    }
+    
+    .eq-component:nth-child(1) {
+      top: 15%;
+      left: 35%;
+      animation-delay: 0s;
+    }
+    
+    .eq-component:nth-child(2) {
+      top: 30%;
+      left: 15%;
+      animation-delay: 0.5s;
+    }
+    
+    .eq-component:nth-child(3) {
+      top: 60%;
+      left: 20%;
+      animation-delay: 1s;
+    }
+    
+    .eq-component:nth-child(4) {
+      top: 75%;
+      left: 45%;
+      animation-delay: 1.5s;
+    }
+    
+    .eq-component:nth-child(5) {
+      top: 15%;
+      right: 35%;
+      animation-delay: 0.2s;
+    }
+    
+    .eq-component:nth-child(6) {
+      top: 30%;
+      right: 15%;
+      animation-delay: 0.7s;
+    }
+    
+    .eq-component:nth-child(7) {
+      top: 60%;
+      right: 20%;
+      animation-delay: 1.2s;
+    }
+    
+    .eq-component:nth-child(8) {
+      top: 75%;
+      right: 45%;
+      animation-delay: 1.7s;
+    }
+    
+    /* 光る線のエフェクト */
+    .connection-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    
+    .connection-line {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(143, 227, 207, 0), rgba(143, 227, 207, 0.7), rgba(143, 227, 207, 0));
+      animation: line-glow 3s infinite alternate;
+      transform-origin: left center;
+    }
+    
+    .line-1 {
+      width: 100px;
+      top: 25%;
+      left: 40%;
+      transform: rotate(30deg);
+      animation-delay: 0.2s;
+    }
+    
+    .line-2 {
+      width: 120px;
+      top: 40%;
+      left: 30%;
+      transform: rotate(-15deg);
+      animation-delay: 0.5s;
+    }
+    
+    .line-3 {
+      width: 80px;
+      top: 60%;
+      left: 35%;
+      transform: rotate(45deg);
+      animation-delay: 0.8s;
+    }
+    
+    .line-4 {
+      width: 110px;
+      top: 30%;
+      right: 35%;
+      transform: rotate(-30deg);
+      animation-delay: 0.3s;
+    }
+    
+    .line-5 {
+      width: 90px;
+      top: 50%;
+      right: 30%;
+      transform: rotate(15deg);
+      animation-delay: 0.6s;
+    }
+    
+    .line-6 {
+      width: 100px;
+      top: 70%;
+      right: 40%;
+      transform: rotate(-45deg);
+      animation-delay: 0.9s;
+    }
+    
+    /* アニメーション */
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+      100% {
+        transform: scale(1.1);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.3), 0 0 15px rgba(143, 227, 207, 0.5);
+      }
+    }
+    
+    @keyframes line-glow {
+      0% {
+        opacity: 0.3;
+      }
+      100% {
+        opacity: 0.8;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="thumbnail-container">
+    <!-- グリッドパターン背景 -->
+    <div class="grid-pattern"></div>
+    
+    <!-- 円形のグラフィック要素 -->
+    <div class="circle-graphic circle-1"></div>
+    <div class="circle-graphic circle-2"></div>
+    
+    <!-- コンテンツコンテナ -->
+    <div class="content-container">
+      <!-- 左側のコンテンツ -->
+      <div class="left-content">
+        <div class="badge zen-kurenaido-regular">
+          <i class="fas fa-brain"></i> 組織心理学 | ビジネススキル
+        </div>
+        
+        <h1 class="title kaisei-decol-bold">
+          <span>EQ</span>（感情知能）の<br>理解と活用
+        </h1>
+        
+        <p class="subtitle zen-kurenaido-regular">
+          個人の成長からチーム強化まで
+        </p>
+        
+        <div class="features">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="feature-text">
+              <h3 class="feature-title kaisei-decol-bold">感情の理解と活用</h3>
+              <p class="feature-desc zen-kurenaido-regular">自他の感情を理解し、効果的に活用する能力</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="feature-text">
+              <h3 class="feature-title kaisei-decol-bold">向上可能性</h3>
+              <p class="feature-desc zen-kurenaido-regular">教育・訓練により大幅な成長が可能</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-puzzle-piece"></i>
+            </div>
+            <div class="feature-text">
+              <h3 class="feature-title kaisei-decol-bold">8つの構成要素</h3>
+              <p class="feature-desc zen-kurenaido-regular">感情リテラシーや共感力など多面的な能力</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="feature-text">
+              <h3 class="feature-title kaisei-decol-bold">チーム強化</h3>
+              <p class="feature-desc zen-kurenaido-regular">業績30%以上の向上に貢献</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 右側のグラフィック -->
+      <div class="right-graphic">
+        <div class="eq-graphic">
+          <div class="eq-brain">
+            <!-- 脳の左半分 -->
+            <div class="brain-half brain-left"></div>
+            
+            <!-- 脳の右半分 -->
+            <div class="brain-half brain-right"></div>
+            
+            <!-- 脳の中央部分 -->
+            <div class="brain-connector"></div>
+            
+            <!-- EQの構成要素 -->
+            <div class="eq-component">
+              <i class="fas fa-eye"></i>
+            </div>
+            <div class="eq-component">
+              <i class="fas fa-cog"></i>
+            </div>
+            <div class="eq-component">
+              <i class="fas fa-heart"></i>
+            </div>
+            <div class="eq-component">
+              <i class="fas fa-sync"></i>
+            </div>
+            <div class="eq-component">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="eq-component">
+              <i class="fas fa-balance-scale"></i>
+            </div>
+            <div class="eq-component">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <div class="eq-component">
+              <i class="fas fa-star"></i>
+            </div>
+            
+            <!-- 光る線のエフェクト -->
+            <div class="connection-lines">
+              <div class="connection-line line-1"></div>
+              <div class="connection-line line-2"></div>
+              <div class="connection-line line-3"></div>
+              <div class="connection-line line-4"></div>
+              <div class="connection-line line-5"></div>
+              <div class="connection-line line-6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

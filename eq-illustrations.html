@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EQの図解</title>
+  <style>
+    :root {
+      /* コアカラーシステム */
+      --color-bg-primary: #0a0e17;    /* 背景メイン */
+      --color-bg-secondary: #10141e;  /* 背景サブ */
+      --color-bg-tertiary: #161c2b;   /* カード背景 */
+      --color-text-primary: #e2e8f0;  /* メインテキスト */
+      --color-text-secondary: #94a3b8; /* サブテキスト */
+      --color-text-muted: #64748b;    /* 控えめなテキスト */
+      
+      /* アクセントカラー - サイバーパンク風 */
+      --color-accent-neon: #00f7ff;    /* ネオンブルー */
+      --color-accent-electric: #2563eb; /* エレクトリックブルー */
+      --color-accent-cyber: #7c3aed;    /* サイバーパープル */
+      --color-accent-tech: #f472b6;     /* テックピンク */
+      --color-accent-highlight: #22d3ee; /* ハイライト */
+      --color-accent-warning: #fb923c;   /* 警告オレンジ */
+      --color-accent-success: #4ade80;   /* 成功グリーン */
+    }
+    
+    body {
+      background-color: var(--color-bg-primary);
+      margin: 0;
+      padding: 20px;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    
+    .diagram-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .diagram-wrapper {
+      background-color: var(--color-bg-tertiary);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .diagram-title {
+      color: var(--color-text-primary);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .diagram {
+      width: 100%;
+      overflow: visible;
+    }
+    
+    /* SVG アニメーション用スタイル */
+    @keyframes pulse {
+      0% {
+        opacity: 0.7;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.7;
+      }
+    }
+    
+    @keyframes glow {
+      0% {
+        filter: drop-shadow(0 0 2px var(--color-accent-neon));
+      }
+      50% {
+        filter: drop-shadow(0 0 5px var(--color-accent-neon));
+      }
+      100% {
+        filter: drop-shadow(0 0 2px var(--color-accent-neon));
+      }
+    }
+    
+    .glow-effect {
+      animation: glow 3s infinite;
+    }
+    
+    .pulse-effect {
+      animation: pulse 3s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="diagram-container">
+    <!-- EQ構成要素の関連図 -->
+    <div class="diagram-wrapper">
+      <h2 class="diagram-title">EQの8つの構成要素とその関連性</h2>
+      <svg class="diagram" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        <!-- 背景グリッド -->
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"/>
+          </pattern>
+          <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" style="stop-color:rgba(124, 58, 237, 0.2);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgba(0, 0, 0, 0);stop-opacity:0" />
+          </radialGradient>
+          <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#00f7ff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        
+        <!-- 背景 -->
+        <rect width="800" height="600" fill="var(--color-bg-tertiary)" />
+        <rect width="800" height="600" fill="url(#grid)" />
+        <circle cx="400" cy="300" r="250" fill="url(#centerGlow)" />
+        
+        <!-- 中央のEQハブ -->
+        <circle cx="400" cy="300" r="80" fill="#161c2b" stroke="url(#neonGradient)" stroke-width="2" class="glow-effect" />
+        <text x="400" y="300" text-anchor="middle" dominant-baseline="middle" fill="#00f7ff" font-size="24" font-weight="bold" class="glow-effect">EQ</text>
+        <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#e2e8f0" font-size="14">感情知能</text>
+        
+        <!-- 8つの構成要素 -->
+        <!-- 1. 感情リテラシー -->
+        <g class="pulse-effect">
+          <circle cx="400" cy="120" r="50" fill="#161c2b" stroke="#00f7ff" stroke-width="2" />
+          <text x="400" y="115" text-anchor="middle" dominant-baseline="middle" fill="#00f7ff" font-size="14" font-weight="bold">感情リテラシー</text>
+          <text x="400" y="135" text-anchor="middle" dominant-baseline="middle" fill="#94a3b8" font-size="11">感情を識別・理解</text>
+        </g>
+        <path d="M 400 180 L 400 220" stroke="url(#neonGradient)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- 2. 自己パターンの認識 -->
+        <g class="pulse-effect">
+          <circle cx="580" cy="170" r="50" fill="#161c2b" stroke="#7c3aed" stroke-width="2" />
+          <text x="580" y="165" text-anchor="middle" dominant-baseline="middle" fill="#7c3aed" font-size="14" font-weight="bold">自己パターン</text>
+          <text x="580" y="185" text-anchor="middle" dominant-baseline="middle" fill="#94a3b8" font-size="11">行動パターン理解</text>
+        </g>
+        <path d="M 535 197 L 470 250" stroke="url(#neonGradient)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- 3. 結果を見すえた思考 -->
+        <g class="pulse-effect">
+          <circle cx="630" cy="300" r="50" fill="#161c2b" stroke="#f472b6" stroke-width="2" />
+          <text x="630" y="295" text-anchor="middle" dominant-baseline="middle" fill="#f472b6" font-size="14" font-weight="bold">結果思考</text>
+          <text x="630" y="315" text-anchor="middle" dominant-baseline="middle" fill="#94a3b8" font-size="11">行動結果の予測</text>
+        </g>
+        <path d="M 580 300 L 480 300" stroke="url(#neonGradient)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- 4. 感情のナビゲート -->
+        <g class="pulse-effect">
+          <circle cx="580" cy="430" r="50" fill="#161c2b" stroke="#22d3ee" stroke-width="2" />
+          <text x="580" y="425" text-anchor="middle" dominant-baseline="middle" fill="#22d3ee" font-size="14" font-weight="bold">感情ナビゲート</text>
+          <text x="580" y="445" text-anchor="middle" dominant-baseline="middle" fill="#94a3b8" font-size="11">感情のコントロール</text>
+        </g>
+        <path d="M 535 403 L 470 350" stroke="url(#neonGradient)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- 5. 内発的なモチベーション -->
+        <g class="pulse-effect">
+          <circle cx="400" cy="480" r="50" fill="#161c2b" stroke="#fb923c" stroke-width="2" />
+          <text x="400" y="475" text-anchor="middle" dominant-baseline="middle" fill="#fb923c" font-size="14" font-weight="bold">内発的動機</text>
+          <text x="400" y="495" text-anchor="middle" dominant-baseline="middle" fill="#94a3b8" font-size="11">自己動機付け</text>
+        </g>
+        <path d="M 400 430 L 400 380" stroke="url(#neonGradient)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- 6. 楽観性の発揮 -->
+        <g class="pulse-effect">
+          <circle cx="220" cy="430" r="50" fill="#161c2b" stroke="#4ade80" stroke-width="2" />
+          <text x="220" y="425" text-anchor="middle" dominant-baseline="middle" fill="#4ade80" font-size="14" font-weight="bold">楽観性</text>
+          <text x="220" y="445" text-anchor="middle" dominant-baseline="middle" fill="#94a3b8" font-size="11">前向きな姿勢</text>
+        </g>
+        <path d="M 265 403 L 330 350" stroke="url(#neonGradient)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- 7. 共感力の活用 -->
+        <g class="pulse-effect">
+          <circle cx="170" cy="300" r="50" fill="#161c2b" stroke="#2563eb" stroke-width="2" />
+          <text x="170" y="295" text-anchor="middle" dominant-baseline="middle" fill="#2563eb" font-size="14" font-weight="bold">共感力</text>
+          <text x="170" y="315" text-anchor="middle" dominant-baseline="middle" fill="#94a3b8" font-size="11">他者感情理解</text>
+        </g>
+        <path d="M 220 300 L 320 300" stroke="url(#neonGradient)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- 8. ノーブルゴールの追求 -->
+        <g class="pulse-effect">
+          <circle cx="220" cy="170" r="50" fill="#161c2b" stroke="#00f7ff" stroke-width="2" />
+          <text x="220" y="165" text-anchor="middle" dominant-baseline="middle" fill="#00f7ff" font-size="14" font-weight="bold">ノーブルゴール</text>
+          <text x="220" y="185" text-anchor="middle" dominant-baseline="middle" fill="#94a3b8" font-size="11">高い目的追求</text>
+        </g>
+        <path d="M 265 197 L 330 250" stroke="url(#neonGradient)" stroke-width="2" stroke-dasharray="5,5" />
+      </svg>
+    </div>
+    
+    <!-- EQとIQの比較図 -->
+    <div class="diagram-wrapper">
+      <h2 class="diagram-title">EQとIQの比較と相互作用</h2>
+      <svg class="diagram" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- 背景と定義 -->
+        <defs>
+          <linearGradient id="eqGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#00f7ff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+          </linearGradient>
+          <linearGradient id="iqGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f472b6;stop-opacity:1" />
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        
+        <!-- 背景 -->
+        <rect width="800" height="500" fill="var(--color-bg-tertiary)" />
+        <rect width="800" height="500" fill="url(#grid)" />
+        
+        <!-- ベン図の左側（EQ） -->
+        <circle cx="350" cy="250" r="180" fill="rgba(0, 247, 255, 0.1)" stroke="url(#eqGradient)" stroke-width="2" filter="url(#glow)" />
+        <text x="240" y="250" text-anchor="middle" dominant-baseline="middle" fill="#00f7ff" font-size="28" font-weight="bold" filter="url(#glow)">EQ</text>
+        
+        <!-- ベン図の右側（IQ） -->
+        <circle cx="450" cy="250" r="180" fill="rgba(37, 99, 235, 0.1)" stroke="url(#iqGradient)" stroke-width="2" filter="url(#glow)" />
+        <text x="560" y="250" text-anchor="middle" dominant-baseline="middle" fill="#2563eb" font-size="28" font-weight="bold" filter="url(#glow)">IQ</text>
+        
+        <!-- EQ領域の特性 -->
+        <text x="200" y="170" text-anchor="middle" fill="#e2e8f0" font-size="14">自己認識</text>
+        <text x="200" y="200" text-anchor="middle" fill="#e2e8f0" font-size="14">感情管理</text>
+        <text x="200" y="230" text-anchor="middle" fill="#e2e8f0" font-size="14">社会的認識</text>
+        <text x="200" y="260" text-anchor="middle" fill="#e2e8f0" font-size="14">共感力</text>
+        <text x="200" y="290" text-anchor="middle" fill="#e2e8f0" font-size="14">関係管理</text>
+        <text x="200" y="320" text-anchor="middle" fill="#e2e8f0" font-size="14">自己動機付け</text>
+        
+        <!-- IQ領域の特性 -->
+        <text x="600" y="170" text-anchor="middle" fill="#e2e8f0" font-size="14">論理的思考</text>
+        <text x="600" y="200" text-anchor="middle" fill="#e2e8f0" font-size="14">言語能力</text>
+        <text x="600" y="230" text-anchor="middle" fill="#e2e8f0" font-size="14">数学的能力</text>
+        <text x="600" y="260" text-anchor="middle" fill="#e2e8f0" font-size="14">記憶力</text>
+        <text x="600" y="290" text-anchor="middle" fill="#e2e8f0" font-size="14">空間認識力</text>
+        <text x="600" y="320" text-anchor="middle" fill="#e2e8f0" font-size="14">抽象的思考</text>
+        
+        <!-- 共通部分（EQとIQの交差） -->
+        <g class="pulse-effect">
+          <text x="400" y="170" text-anchor="middle" fill="#f472b6" font-size="16" font-weight="bold">成功のための相乗効果</text>
+          <text x="400" y="200" text-anchor="middle" fill="#e2e8f0" font-size="13">問題解決能力</text>
+          <text x="400" y="225" text-anchor="middle" fill="#e2e8f0" font-size="13">意思決定スキル</text>
+          <text x="400" y="250" text-anchor="middle" fill="#e2e8f0" font-size="13">創造性とイノベーション</text>
+          <text x="400" y="275" text-anchor="middle" fill="#e2e8f0" font-size="13">リーダーシップ</text>
+          <text x="400" y="300" text-anchor="middle" fill="#e2e8f0" font-size="13">職場でのパフォーマンス</text>
+          <text x="400" y="325" text-anchor="middle" fill="#e2e8f0" font-size="13">学習と適応能力</text>
+        </g>
+        
+        <!-- 図の説明文 -->
+        <text x="400" y="420" text-anchor="middle" fill="#94a3b8" font-size="14">EQとIQは相互に補完し合い、両方のバランスが取れている場合に</text>
+        <text x="400" y="445" text-anchor="middle" fill="#94a3b8" font-size="14">個人およびプロフェッショナルとしての成功可能性が最も高まります</text>
+      </svg>
+    </div>
+    
+    <!-- EQ向上プロセス図 -->
+    <div class="diagram-wrapper">
+      <h2 class="diagram-title">EQ向上の5段階プロセス</h2>
+      <svg class="diagram" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+        <!-- 定義 -->
+        <defs>
+          <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#00f7ff;stop-opacity:1" />
+            <stop offset="25%" style="stop-color:#2563eb;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#7c3aed;stop-opacity:1" />
+            <stop offset="75%" style="stop-color:#f472b6;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#4ade80;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        
+        <!-- 背景 -->
+        <rect width="800" height="400" fill="var(--color-bg-tertiary)" />
+        <rect width="800" height="400" fill="url(#grid)" />
+        
+        <!-- プログレスライン -->
+        <path d="M 100 200 L 700 200" stroke="rgba(255, 255, 255, 0.1)" stroke-width="4" />
+        <path d="M 100 200 L 700 200" stroke="url(#progressGradient)" stroke-width="4" stroke-dasharray="600" stroke-dashoffset="0" class="glow-effect">
+          <animate attributeName="stroke-dashoffset" from="600" to="0" dur="3s" begin="0s" fill="freeze" />
+        </path>
+        
+        <!-- ステップ1: 自己認識 -->
+        <circle cx="100" cy="200" r="20" fill="#161c2b" stroke="#00f7ff" stroke-width="2" class="pulse-effect" />
+        <text x="100" y="200" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-size="14" font-weight="bold">1</text>
+        <text x="100" y="160" text-anchor="middle" fill="#00f7ff" font-size="14" font-weight="bold">自己認識</text>
+        <text x="100" y="240" text-anchor="middle" fill="#94a3b8" font-size="12" width="120">EQを測定し</text>
+        <text x="100" y="260" text-anchor="middle" fill="#94a3b8" font-size="12" width="120">現状を把握</text>
+        
+        <!-- ステップ2: 感情リテラシー -->
+        <circle cx="250" cy="200" r="20" fill="#161c2b" stroke="#2563eb" stroke-width="2" class="pulse-effect" />
+        <text x="250" y="200" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-size="14" font-weight="bold">2</text>
+        <text x="250" y="160" text-anchor="middle" fill="#2563eb" font-size="14" font-weight="bold">感情リテラシー</text>
+        <text x="250" y="240" text-anchor="middle" fill="#94a3b8" font-size="12">感情を認識し</text>
+        <text x="250" y="260" text-anchor="middle" fill="#94a3b8" font-size="12">名前をつける</text>
+        
+        <!-- ステップ3: 感情管理 -->
+        <circle cx="400" cy="200" r="20" fill="#161c2b" stroke="#7c3aed" stroke-width="2" class="pulse-effect" />
+        <text x="400" y="200" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-size="14" font-weight="bold">3</text>
+        <text x="400" y="160" text-anchor="middle" fill="#7c3aed" font-size="14" font-weight="bold">感情管理</text>
+        <text x="400" y="240" text-anchor="middle" fill="#94a3b8" font-size="12">感情を制御し</text>
+        <text x="400" y="260" text-anchor="middle" fill="#94a3b8" font-size="12">適切に表現</text>
+        
+        <!-- ステップ4: 共感力 -->
+        <circle cx="550" cy="200" r="20" fill="#161c2b" stroke="#f472b6" stroke-width="2" class="pulse-effect" />
+        <text x="550" y="200" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-size="14" font-weight="bold">4</text>
+        <text x="550" y="160" text-anchor="middle" fill="#f472b6" font-size="14" font-weight="bold">共感力</text>
+        <text x="550" y="240" text-anchor="middle" fill="#94a3b8" font-size="12">他者の感情を</text>
+        <text x="550" y="260" text-anchor="middle" fill="#94a3b8" font-size="12">理解し共感</text>
+        
+        <!-- ステップ5: 関係性構築 -->
+        <circle cx="700" cy="200" r="20" fill="#161c2b" stroke="#4ade80" stroke-width="2" class="pulse-effect" />
+        <text x="700" y="200" text-anchor="middle" dominant-baseline="middle" fill="#fff" font-size="14" font-weight="bold">5</text>
+        <text x="700" y="160" text-anchor="middle" fill="#4ade80" font-size="14" font-weight="bold">関係性構築</text>
+        <text x="700" y="240" text-anchor="middle" fill="#94a3b8" font-size="12">健全な関係を</text>
+        <text x="700" y="260" text-anchor="middle" fill="#94a3b8" font-size="12">構築・維持</text>
+        
+        <!-- 図の説明 -->
+        <text x="400" y="320" text-anchor="middle" fill="#94a3b8" font-size="14">EQ向上は継続的なプロセスであり、各段階でのスキルを積み重ねることで</text>
+        <text x="400" y="345" text-anchor="middle" fill="#94a3b8" font-size="14">感情知能全体が高まり、個人とチームのパフォーマンスが向上します</text>
+      </svg>
+    </div>
+    
+    <!-- EQとビジネス成果の関連図 -->
+    <div class="diagram-wrapper">
+      <h2 class="diagram-title">EQとビジネス成果の関連性</h2>
+      <svg class="diagram" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- 定義 -->
+        <defs>
+          <linearGradient id="arrowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#00f7ff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+          </linearGradient>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="url(#arrowGradient)" />
+          </marker>
+        </defs>
+        
+        <!-- 背景 -->
+        <rect width="800" height="500" fill="var(--color-bg-tertiary)" />
+        <rect width="800" height="500" fill="url(#grid)" />
+        
+        <!-- EQ中心ノード -->
+        <circle cx="400" cy="150" r="70" fill="#161c2b" stroke="url(#neonGradient)" stroke-width="3" class="glow-effect" />
+        <text x="400" y="140" text-anchor="middle" fill="#00f7ff" font-size="24" font-weight="bold">高EQ</text>
+        <text x="400" y="170" text-anchor="middle" fill="#e2e8f0" font-size="14">感情知能</text>
+        
+        <!-- ビジネス成果ノード：左上 - リーダーシップ -->
+        <g class="pulse-effect">
+          <circle cx="180" cy="250" r="60" fill="#161c2b" stroke="#7c3aed" stroke-width="2" />
+          <text x="180" y="240" text-anchor="middle" fill="#7c3aed" font-size="16" font-weight="bold">リーダーシップ</text>
+          <text x="180" y="265" text-anchor="middle" fill="#94a3b8" font-size="12">効果的な方向づけ</text>
+          <text x="180" y="285" text-anchor="middle" fill="#94a3b8" font-size="12">と影響力</text>
+        </g>
+        <line x1="340" y1="180" x2="230" y2="225" stroke="url(#arrowGradient)" stroke-width="2" marker-end="url(#arrowhead)" />
+        
+        <!-- ビジネス成果ノード：右上 - チームパフォーマンス -->
+        <g class="pulse-effect">
+          <circle cx="620" cy="250" r="60" fill="#161c2b" stroke="#22d3ee" stroke-width="2" />
+          <text x="620" y="240" text-anchor="middle" fill="#22d3ee" font-size="16" font-weight="bold">チーム</text>
+          <text x="620" y="265" text-anchor="middle" fill="#22d3ee" font-size="16" font-weight="bold">パフォーマンス</text>
+          <text x="620" y="290" text-anchor="middle" fill="#94a3b8" font-size="12">協力と結束力</text>
+        </g>
+        <line x1="460" y1="180" x2="570" y2="225" stroke="url(#arrowGradient)" stroke-width="2" marker-end="url(#arrowhead)" />
+        
+        <!-- ビジネス成果ノード：左下 - 変化への適応 -->
+        <g class="pulse-effect">
+          <circle cx="250" cy="400" r="60" fill="#161c2b" stroke="#f472b6" stroke-width="2" />
+          <text x="250" y="390" text-anchor="middle" fill="#f472b6" font-size="16" font-weight="bold">変化への適応</text>
+          <text x="250" y="415" text-anchor="middle" fill="#94a3b8" font-size="12">柔軟性と</text>
+          <text x="250" y="435" text-anchor="middle" fill="#94a3b8" font-size="12">レジリエンス</text>
+        </g>
+        <line x1="360" y1="210" x2="290" y2="350" stroke="url(#arrowGradient)" stroke-width="2" marker-end="url(#arrowhead)" />
+        
+        <!-- ビジネス成果ノード：右下 - 顧客関係 -->
+        <g class="pulse-effect">
+          <circle cx="550" cy="400" r="60" fill="#161c2b" stroke="#4ade80" stroke-width="2" />
+          <text x="550" y="390" text-anchor="middle" fill="#4ade80" font-size="16" font-weight="bold">顧客関係</text>
+          <text x="550" y="415" text-anchor="middle" fill="#94a3b8" font-size="12">共感と信頼に</text>
+          <text x="550" y="435" text-anchor="middle" fill="#94a3b8" font-size="12">基づく関係構築</text>
+        </g>
+        <line x1="440" y1="210" x2="510" y2="350" stroke="url(#arrowGradient)" stroke-width="2" marker-end="url(#arrowhead)" />
+        
+        <!-- 中心下 - イノベーション -->
+        <g class="pulse-effect">
+          <circle cx="400" cy="350" r="60" fill="#161c2b" stroke="#fb923c" stroke-width="2" />
+          <text x="400" y="340" text-anchor="middle" fill="#fb923c" font-size="16" font-weight="bold">イノベーション</text>
+          <text x="400" y="365" text-anchor="middle" fill="#94a3b8" font-size="12">創造性の促進と</text>
+          <text x="400" y="385" text-anchor="middle" fill="#94a3b8" font-size="12">アイデア実現</text>
+        </g>
+        <line x1="400" y1="220" x2="400" y2="290" stroke="url(#arrowGradient)" stroke-width="2" marker-end="url(#arrowhead)" />
+        
+        <!-- 成果統合ノード -->
+        <rect x="150" y="460" width="500" height="30" rx="15" fill="rgba(0, 247, 255, 0.1)" stroke="url(#neonGradient)" stroke-width="2" class="glow-effect" />
+        <text x="400" y="480" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="bold">ビジネス成功: 収益向上・顧客満足度・従業員定着率</text>
+        
+        <!-- 矢印：リーダーシップ→成果 -->
+        <line x1="180" y1="310" x2="200" y2="460" stroke="rgba(124, 58, 237, 0.6)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- 矢印：チームパフォーマンス→成果 -->
+        <line x1="620" y1="310" x2="600" y2="460" stroke="rgba(34, 211, 238, 0.6)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- 矢印：変化への適応→成果 -->
+        <line x1="250" y1="460" x2="250" y2="460" stroke="rgba(244, 114, 182, 0.6)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- 矢印：顧客関係→成果 -->
+        <line x1="550" y1="460" x2="550" y2="460" stroke="rgba(74, 222, 128, 0.6)" stroke-width="2" stroke-dasharray="5,5" />
+        
+        <!-- 矢印：イノベーション→成果 -->
+        <line x1="400" y1="410" x2="400" y2="460" stroke="rgba(251, 146, 60, 0.6)" stroke-width="2" stroke-dasharray="5,5" />
+      </svg>
+    </div>
+  </div>
+</body>
+</html>
